@@ -26,7 +26,6 @@ public class Member {
 	@Column
 	private String zipCode;
 
-	@OneToMany
-	@JoinColumn(name="member_id")
+	@OneToMany(mappedBy = "member")
 	private List<Order> orderList;
 }

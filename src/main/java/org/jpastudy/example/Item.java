@@ -20,7 +20,6 @@ public class Item {
 	private long price;
 	private long stockQuantity;
 
-	@OneToMany
-	@JoinColumn(name="item_id")
+	@OneToMany(mappedBy = "item")
 	private List<OrderItem> orderItemList;
 }
