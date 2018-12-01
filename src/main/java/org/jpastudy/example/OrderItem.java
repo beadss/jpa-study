@@ -1,6 +1,7 @@
 package org.jpastudy.example;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -8,6 +9,7 @@ import javax.persistence.*;
  * Created by naver on 2018. 11. 20..
  */
 @Getter
+@Setter
 @Entity
 @Table(name="ORDER_ITEM")
 public class OrderItem {

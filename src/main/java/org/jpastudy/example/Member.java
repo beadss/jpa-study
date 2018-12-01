@@ -3,6 +3,7 @@ package org.jpastudy.example;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,6 +27,7 @@ public class Member {
 	@Column
 	private String zipCode;
 
+	@Builder.Default
 	@OneToMany(mappedBy = "member")
-	private List<Order> orderList;
+	private List<Order> orderList = new ArrayList<>();
 }

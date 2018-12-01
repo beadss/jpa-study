@@ -5,6 +5,7 @@ import org.jpastudy.AutoScanProvider;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import java.util.Date;
 import java.util.function.Function;
 
 /**
@@ -24,6 +25,7 @@ public class Main {
 	}
 
 	private static Member find(EntityManager em) {
+		OrderItem orderItem = em.find(OrderItem.class, 1);
 		return em.find(Member.class, 1);
 	}
 
@@ -35,6 +37,29 @@ public class Main {
 				.zipCode("100")
 				.build();
 		em.persist(member);
+
+		Order order = new Order();
+
+		OrderItem orderItem = new OrderItem();
+
+		order.setMember(member);
+		order.setStatus(OrderStatus.ORDER);
+		order.setOrderDate(new Date());
+
+		Item item = new Item();
+
+		item.setName("item");
+		item.setPrice(1);
+		item.setStockQuantity(1);
+
+		orderItem.setCount(1);
+		orderItem.setItem(item);
+		orderItem.setOrder(order);
+		orderItem.setOrderPrice(1);
+
+		em.persist(item);
+		em.persist(order);
+		em.persist(orderItem);
 
 		return member;
 	}
