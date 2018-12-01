@@ -17,7 +17,7 @@ public class Order {
 	@GeneratedValue
 	private int id;
 
-	@ManyToOne
+	@ManyToOne(optional = false)
 	private Member member;
 
 	@OneToMany(mappedBy = "order")
