@@ -26,15 +26,13 @@ public class Main {
 
 	private static Member find(EntityManager em) {
 		OrderItem orderItem = em.find(OrderItem.class, 1);
+		Item item = em.find(Item.class, 1);
 		return em.find(Member.class, 1);
 	}
 
 	private static Member add(EntityManager em) {
 		Member member = Member.builder()
 				.id(1)
-				.city("seoul")
-				.street("sinsuro")
-				.zipCode("100")
 				.build();
 		em.persist(member);
 
@@ -42,7 +40,14 @@ public class Main {
 
 		OrderItem orderItem = new OrderItem();
 
+		Delivery delivery = Delivery.builder()
+			.city("seoul")
+			.street("sinsuro")
+			.zipCode("100")
+			.build();
+
 		order.setMember(member);
+		order.setDelivery(delivery);
 		order.setStatus(OrderStatus.ORDER);
 		order.setOrderDate(new Date());
 
@@ -52,13 +57,27 @@ public class Main {
 		item.setPrice(1);
 		item.setStockQuantity(1);
 
+		Category parentCategory = new Category();
+		parentCategory.setName("parentCategory");
+		Category childCategory = new Category();
+		childCategory.setName("childCategory");
+
+		parentCategory.addChild(childCategory);
+
+		childCategory.addItem(item);
+
+		em.persist(childCategory);
+		em.persist(parentCategory);
+
+		em.persist(item);
+		em.persist(delivery);
+		em.persist(order);
+
 		orderItem.setCount(1);
 		orderItem.setItem(item);
 		orderItem.setOrder(order);
 		orderItem.setOrderPrice(1);
 
-		em.persist(item);
-		em.persist(order);
 		em.persist(orderItem);
 
 		return member;

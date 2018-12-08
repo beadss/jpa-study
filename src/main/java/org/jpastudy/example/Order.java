@@ -31,6 +31,10 @@ public class Order {
 	@Enumerated(EnumType.STRING)
 	private OrderStatus status;
 
+	@OneToOne
+	@JoinColumn(name = "delivery_id")
+	private Delivery delivery;
+
 	public void setMember(Member member) {
 		if(this.member != null) {
 			this.member.getOrderList().remove(this);

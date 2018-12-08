@@ -20,12 +20,6 @@ public class Member {
 	private int id;
 	@Column
 	private String name;
-	@Column
-	private String city;
-	@Column
-	private String street;
-	@Column
-	private String zipCode;
 
 	@Builder.Default
 	@OneToMany(mappedBy = "member")

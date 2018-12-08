@@ -25,4 +25,8 @@ public class Item {
 
 	@OneToMany(mappedBy = "item")
 	private List<OrderItem> orderItemList = new ArrayList<>();
+
+
+	@ManyToMany(mappedBy = "itemList")
+	private List<Category> categoryList = new ArrayList<>();
 }
