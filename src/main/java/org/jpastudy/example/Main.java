@@ -1,6 +1,9 @@
 package org.jpastudy.example;
 
 import org.jpastudy.AutoScanProvider;
+import org.jpastudy.example.item.Item;
+import org.jpastudy.example.item.subtype.Album;
+import org.jpastudy.example.item.subtype.Book;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -25,8 +28,8 @@ public class Main {
 	}
 
 	private static Member find(EntityManager em) {
-		OrderItem orderItem = em.find(OrderItem.class, 1);
-		Item item = em.find(Item.class, 1);
+		OrderItem orderItem = em.find(OrderItem.class, 5);
+
 		return em.find(Member.class, 1);
 	}
 
@@ -51,11 +54,21 @@ public class Main {
 		order.setStatus(OrderStatus.ORDER);
 		order.setOrderDate(new Date());
 
-		Item item = new Item();
+		Item album1 = new Album();
+		Item album2 = new Album();
+		Item book = new Book();
 
-		item.setName("item");
-		item.setPrice(1);
-		item.setStockQuantity(1);
+		album1.setName("album1");
+		album1.setPrice(1);
+		album1.setStockQuantity(1);
+
+		album2.setName("album2");
+		album2.setPrice(1);
+		album2.setStockQuantity(1);
+
+		book.setName("book");
+		book.setPrice(1);
+		book.setStockQuantity(1);
 
 		Category parentCategory = new Category();
 		parentCategory.setName("parentCategory");
@@ -64,17 +77,22 @@ public class Main {
 
 		parentCategory.addChild(childCategory);
 
-		childCategory.addItem(item);
+		childCategory.addItem(album1);
+		childCategory.addItem(album2);
+		childCategory.addItem(book);
 
 		em.persist(childCategory);
 		em.persist(parentCategory);
 
-		em.persist(item);
+		em.persist(album1);
+		em.persist(album2);
+		em.persist(book);
+
 		em.persist(delivery);
 		em.persist(order);
 
 		orderItem.setCount(1);
-		orderItem.setItem(item);
+		orderItem.setItem(album1);
 		orderItem.setOrder(order);
 		orderItem.setOrderPrice(1);
 

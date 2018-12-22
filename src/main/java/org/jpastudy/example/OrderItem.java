@@ -2,6 +2,7 @@ package org.jpastudy.example;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.jpastudy.example.item.Item;
 
 import javax.persistence.*;
 
@@ -20,7 +21,6 @@ public class OrderItem {
 	@ManyToOne(optional = false)
 	@JoinColumn(name="order_id")
 	private Order order;
-
 
 	@ManyToOne(optional = false)
 	@JoinColumn(name="item_id")

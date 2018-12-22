@@ -2,6 +2,7 @@ package org.jpastudy.example;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.jpastudy.example.item.Item;
 
 import javax.persistence.*;
 import java.util.ArrayList;
