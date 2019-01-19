@@ -18,11 +18,11 @@ public class OrderItem {
 	@GeneratedValue
 	private int id;
 
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = false, fetch = FetchType.LAZY)
 	@JoinColumn(name="order_id")
 	private Order order;
 
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = false, fetch = FetchType.LAZY)
 	@JoinColumn(name="item_id")
 	private Item item;
 

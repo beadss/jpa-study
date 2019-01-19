@@ -22,6 +22,6 @@ public class Member {
 	private String name;
 
 	@Builder.Default
-	@OneToMany(mappedBy = "member")
+	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Order> orderList = new ArrayList<>();
 }

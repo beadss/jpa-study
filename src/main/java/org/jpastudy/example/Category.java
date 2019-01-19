@@ -24,10 +24,10 @@ public class Category {
 	@JoinColumn(name = "parent_id")
 	private Category parent;
 
-	@OneToMany(mappedBy = "parent")
+	@OneToMany(mappedBy = "parent", cascade = CascadeType.PERSIST)
 	private List<Category> childList = new ArrayList<>();
 
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.PERSIST)
 	@JoinTable(name = "category_item",
 		joinColumns = @JoinColumn(name = "category_id"),
 		inverseJoinColumns = @JoinColumn(name = "item_id"))

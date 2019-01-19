@@ -28,7 +28,7 @@ public class Main {
 	}
 
 	private static Member find(EntityManager em) {
-		OrderItem orderItem = em.find(OrderItem.class, 5);
+		Album orderItem = em.find(Album.class, 3);
 
 		return em.find(Member.class, 1);
 	}
@@ -37,7 +37,6 @@ public class Main {
 		Member member = Member.builder()
 				.id(1)
 				.build();
-		em.persist(member);
 
 		Order order = new Order();
 
@@ -81,22 +80,15 @@ public class Main {
 		childCategory.addItem(album2);
 		childCategory.addItem(book);
 
-		em.persist(childCategory);
-		em.persist(parentCategory);
-
-		em.persist(album1);
-		em.persist(album2);
-		em.persist(book);
-
-		em.persist(delivery);
-		em.persist(order);
-
 		orderItem.setCount(1);
 		orderItem.setItem(album1);
 		orderItem.setOrder(order);
 		orderItem.setOrderPrice(1);
 
-		em.persist(orderItem);
+		em.persist(childCategory);
+		em.persist(parentCategory);
+
+		em.persist(member);
 
 		return member;
 	}
